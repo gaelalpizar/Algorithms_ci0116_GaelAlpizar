@@ -5,7 +5,9 @@ class Ordenador{
 	private:
     // Defina aqui los metodos auxiliares de los algoritmos de ordenamiento solamente.
     // Puede definir cuantos metodos quiera.
-	
+	void merge(int *A, int p, int q, int r);
+    void mergeSortRecursive(int *A, int p, int r);
+
 	public:
 	Ordenador(){};
 	~Ordenador(){};
@@ -47,4 +49,50 @@ void Ordenador::insercion(int *A, int n){
         }
         A[j + 1] = key;
     }
+}
+
+void Ordenador::merge(int *A, int p, int q, int r){
+    int nL = q - p + 1;
+    int nR = r - q;
+    int *L = new int[nL];
+    int *R = new int[nR];
+
+    // Copiar elementos a los subarreglos L y R
+    for (int i = 0; i < nL; i++)
+        L[i] = A[p + i];
+    for (int j = 0; j < nR; j++)
+        R[j] = A[q + j + 1];
+
+    int i = 0, j = 0, k = p;
+
+    // Mezclar los subarreglos L y R en el arreglo A
+    while (i < nL && j < nR) {
+        if (L[i] <= R[j]) {
+            A[k] = L[i];
+            i++;
+        } else {
+            A[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    // Copiar los elementos restantes de L (si hay alguno)
+    while (i < nL) {
+        A[k] = L[i];
+        i++;
+        k++;
+    }
+
+    // Copiar los elementos restantes de R (si hay alguno)
+    while (j < nR) {
+        A[k] = R[j];
+        j++;
+        k++;
+    }
+
+    // Liberar memoria 
+    delete[] L;
+    delete[] R;
+
 }

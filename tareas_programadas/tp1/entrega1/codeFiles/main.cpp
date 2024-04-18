@@ -1,10 +1,24 @@
 #include "Ordenador.h"
 #include <chrono>
+#include <fstream>
+
+using namespace std::chrono;
+
+void generarArregloAleatorio(int *A, int n) {
+    for (int i = 0; i < n; ++i) {
+        A[i] = rand() % 1000; // Números aleatorios entre 0 y 999
+    }
+}
 
 int main() {
     Ordenador ordenador;
 
-    return 0;
+    int tamanos[] = {50000, 100000, 150000, 200000};
+
+    // Número de ejecuciones por arreglo
+    const int num_ejecuciones = 3;
+
+   
 
     // // Verificar si se ordena correctamente:
     // // Arreglo de prueba
@@ -55,4 +69,5 @@ int main() {
     //     }
     // } 
 
+    return 0;
 }

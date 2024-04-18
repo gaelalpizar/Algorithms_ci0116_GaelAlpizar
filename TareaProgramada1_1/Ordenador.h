@@ -1,12 +1,17 @@
 #ifndef Ordenador_h
 #define Ordenador_h
 
+#include <iostream>
+
+using namespace std;
+
 class Ordenador{
 	private:
     // Defina aqui los metodos auxiliares de los algoritmos de ordenamiento solamente.
     // Puede definir cuantos metodos quiera.
 	void merge(int *A, int p, int q, int r);
     void mergeSortRecursive(int *A, int p, int r);
+    void ImprimirDatosDeTarea();
 
 	public:
 	Ordenador(){};
@@ -108,4 +113,8 @@ void Ordenador::mergeSortRecursive(int *A, int p, int r){
 
 void Ordenador::mergesort(int *A, int n){
     mergeSortRecursive(A, 0, n - 1);
+}
+
+void Ordenador::ImprimirDatosDeTarea(){
+    cout << "c20270 Tarea 1 Etapa 1" << endl;
 }

@@ -11,7 +11,8 @@ class Ordenador{
     // Puede definir cuantos metodos quiera.
 	void merge(int *A, int p, int q, int r);
     void mergeSortRecursive(int *A, int p, int r);
-    void ImprimirDatosDeTarea();
+    friend void ImprimirDatosDeTarea();
+    
 
 	public:
 	Ordenador(){};
@@ -115,6 +116,6 @@ void Ordenador::mergesort(int *A, int n){
     mergeSortRecursive(A, 0, n - 1);
 }
 
-void Ordenador::ImprimirDatosDeTarea(){
+void ImprimirDatosDeTarea(){
     cout << "c20270 Tarea 1 Etapa 1" << endl;
 }

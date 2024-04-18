@@ -96,3 +96,12 @@ void Ordenador::merge(int *A, int p, int q, int r){
     delete[] R;
 
 }
+
+void Ordenador::mergeSortRecursive(int *A, int p, int r){
+    if (p >= r)
+        return;
+    int q = (p + r) / 2;
+    mergeSortRecursive(A, p, q);
+    mergeSortRecursive(A, q + 1, r);
+    merge(A, p, q, r);
+}

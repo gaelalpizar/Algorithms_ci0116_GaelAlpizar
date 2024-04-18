@@ -22,6 +22,20 @@ class Ordenador{
 };
 #endif
 
+void Ordenador::seleccion(int *A, int n){
+	for (int i = 0; i < n - 1; i++) {
+        int m = i;
+        for (int j = i + 1; j < n; j++) {
+            if (A[j] < A[m]) {
+                m = j;
+            }
+        }
+        // swap(A[i], A[m])
+        int temp = A[i];
+        A[i] = A[m];
+        A[m] = temp;
+    }
+}
 
 void Ordenador::insercion(int *A, int n){
 	for (int i = 1; i < n; i++) {

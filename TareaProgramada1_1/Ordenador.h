@@ -105,3 +105,7 @@ void Ordenador::mergeSortRecursive(int *A, int p, int r){
     mergeSortRecursive(A, q + 1, r);
     merge(A, p, q, r);
 }
+
+void Ordenador::mergesort(int *A, int n){
+    mergeSortRecursive(A, 0, n - 1);
+}

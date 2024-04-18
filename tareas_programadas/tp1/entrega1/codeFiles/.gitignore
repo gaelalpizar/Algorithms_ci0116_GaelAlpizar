@@ -1,0 +1,12 @@
+# Archivos de compilación y ejecutables
+*.o
+*.out
+*.exe
+
+# Directorios generados por compiladores
+bin/
+build/
+
+# Archivos de configuración generados automáticamente
+.vscode/
+.idea/

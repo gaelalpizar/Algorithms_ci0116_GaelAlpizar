@@ -23,7 +23,7 @@ class Ordenador{
 #endif
 
 
-void Ordenador::seleccion(int *A, int n){
+void Ordenador::insercion(int *A, int n){
 	for (int i = 1; i < n; i++) {
         int key = A[i];
         int j = i - 1;

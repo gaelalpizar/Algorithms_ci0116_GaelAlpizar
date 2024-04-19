@@ -32,25 +32,28 @@ int main() {
             // Generar arreglo aleatorio
             generarArregloAleatorio(arreglo, tam);
 
-            // Ejecutar y medir el tiempo de ejecución para cada algoritmo
-            auto start_seleccion = high_resolution_clock::now();
-            ordenador.seleccion(arreglo, tam);
-            auto stop_seleccion = high_resolution_clock::now();
-            auto duration_seleccion = duration_cast<milliseconds>(stop_seleccion - start_seleccion);
+            // // Ejecutar y medir el tiempo de ejecución para cada algoritmo
+            // // Hay que hacerlo cada uno por separado (Se comentan todos y solo se descomenta
+            // // el de un algoritmo)
+            // auto start_seleccion = high_resolution_clock::now();
+            // ordenador.seleccion(arreglo, tam);
+            // auto stop_seleccion = high_resolution_clock::now();
+            // auto duration_seleccion = duration<double, std::milli>(stop_seleccion - start_seleccion);
 
-            auto start_insercion = high_resolution_clock::now();
-            ordenador.insercion(arreglo, tam);
-            auto stop_insercion = high_resolution_clock::now();
-            auto duration_insercion = duration_cast<milliseconds>(stop_insercion - start_insercion);
+            // auto start_insercion = high_resolution_clock::now();
+            // ordenador.insercion(arreglo, tam);
+            // auto stop_insercion = high_resolution_clock::now();
+            // auto duration_insercion = duration<double, std::milli>(stop_insercion - start_insercion);
+
 
             auto start_mergesort = high_resolution_clock::now();
             ordenador.mergesort(arreglo, tam);
             auto stop_mergesort = high_resolution_clock::now();
-            auto duration_mergesort = duration_cast<milliseconds>(stop_mergesort - start_mergesort);
+            auto duration_mergesort = duration<double, std::milli>(stop_mergesort - start_mergesort);
 
             // Imprimir y escribir los tiempos de ejecución en el archivo de resultados
-            resultados << "Tiempo de ejecución (seleccion): " << duration_seleccion.count() << " ms" << endl;
-            resultados << "Tiempo de ejecución (insercion): " << duration_insercion.count() << " ms" << endl;
+            //resultados << "Tiempo de ejecución (seleccion): " << duration_seleccion.count() << " ms" << endl;
+            //resultados << "Tiempo de ejecución (insercion): " << duration_insercion.count() << " ms" << endl;
             resultados << "Tiempo de ejecución (mergesort): " << duration_mergesort.count() << " ms" << endl;
         }
 

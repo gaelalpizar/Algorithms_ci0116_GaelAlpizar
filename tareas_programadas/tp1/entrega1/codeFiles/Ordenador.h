@@ -11,12 +11,12 @@ class Ordenador{
     // Puede definir cuantos metodos quiera.
 	void merge(int *A, int p, int q, int r);
     void mergeSortRecursive(int *A, int p, int r);
-    friend string ImprimirDatosDeTarea();
     
 
 	public:
 	Ordenador(){};
 	~Ordenador(){};
+    string ImprimirDatosDeTarea();
 	// Si piensa no implementar algunos de los metodos de ordenamiento, no los borre,
 	// simplemente dejelos con el cuerpo vacio para evitar errores de compilacion, ya
 	// que se va a ejecutar el mismo main para todas las tareas.
@@ -116,6 +116,6 @@ void Ordenador::mergesort(int *A, int n){
     mergeSortRecursive(A, 0, n - 1);
 }
 
-string ImprimirDatosDeTarea(){
+string Ordenador::ImprimirDatosDeTarea(){
     return "c20270 Tarea 1 Etapa 1";
 }

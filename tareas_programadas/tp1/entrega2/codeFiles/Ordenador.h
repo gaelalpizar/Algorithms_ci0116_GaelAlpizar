@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <cmath>
 
 using namespace std;
 
@@ -16,7 +17,7 @@ class Ordenador{
     void buildMaxHeap(int *A, int n);
     int partition(int *A, int p, int r);
     void quicksortRecursive(int *A, int p, int r);
-    void countingSort(int* A, int n, int exp);
+    void countingSort(int* A, int n, int exp, int base);
     int getMax(int* A, int n);
 
     
@@ -259,29 +260,38 @@ void Ordenador::quicksort(int *A, int n){
 }
 
 
-/** 
- * Función que implementa Counting Sort para ordenar un array de enteros. 
- * @param A Array a ser ordenado. 
- * @param n Tamaño del array. 
- * @param exp Valor del dígito a ser considerado en la ordenación. 
+/**
+ * Función que implementa Counting Sort para ordenar un array de enteros.
+ * @param A Array a ser ordenado.
+ * @param n Tamaño del array.
+ * @param exp Valor del dígito a ser considerado en la ordenación.
+ * @param base Base para la conversión de dígitos.
  */
-void Ordenador::countingSort(int* A, int n, int exp) {
+void Ordenador::countingSort(int* A, int n, int exp, int base) {
     int output[n];
-    int count[10] = {0};
+    int count[base];
+
+    if(n > 0) {
+        count[0] = 0;
+        for(int i = 1; i < base; i++){
+            count[i] = 0;
+        }
+    }
+    
 
     // Almacenar la frecuencia de cada dígito en count[]
     for (int i = 0; i < n; i++)
-        count[(A[i] / exp) % 10]++;
+        count[(A[i] / exp) % base]++;
 
     // Cambiar count[i] para que contenga la posición real
     // de este dígito en la salida
-    for (int i = 1; i < 10; i++)
+    for (int i = 1; i < base; i++)
         count[i] += count[i - 1];
 
     // Construir la salida
     for (int i = n - 1; i >= 0; i--) {
-        output[count[(A[i] / exp) % 10] - 1] = A[i];
-        count[(A[i] / exp) % 10]--;
+        output[count[(A[i] / exp) % base] - 1] = A[i];
+        count[(A[i] / exp) % base]--;
     }
 
     // Copiar la salida al array original A
@@ -313,9 +323,12 @@ void Ordenador::radixsort(int* A, int n) {
     // Encontrar el máximo número para saber el número de dígitos
     int max = getMax(A, n);
 
+    // Calcular la base adecuada para la conversión
+    int base = pow(2, (int)log2(max));
+
     // Aplicar Counting Sort para cada dígito
-    for (int exp = 1; max / exp > 0; exp *= 10)
-        countingSort(A, n, exp);
+    for (int exp = 1; max / exp > 0; exp *= base)
+        countingSort(A, n, exp, base);
 }
 
 // Método para imprimir información de la tarea

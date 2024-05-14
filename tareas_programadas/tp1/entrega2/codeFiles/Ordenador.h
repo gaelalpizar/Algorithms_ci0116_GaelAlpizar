@@ -14,6 +14,8 @@ class Ordenador{
     void mergeSortRecursive(int *A, int p, int r);
     void maxHeapify(int *A, int i, int heap_size);
     void buildMaxHeap(int *A, int n);
+    int partition(int *A, int p, int r);
+    void quicksortRecursive(int *A, int p, int r);
 
 
     
@@ -208,7 +210,52 @@ void Ordenador::heapsort(int *A, int n) {
     }
 }
 
+/**
+ * Particiona un arreglo en dos subarreglos alrededor de un pivote.
+ * @param A: puntero al arreglo a particionar.
+ * @param p: índice inicial del subarreglo.
+ * @param r: índice final del subarreglo.
+ * @return: índice del pivote después de la partición.
+ */
+int Ordenador::partition(int *A, int p, int r) {
+    int x = A[r]; // Pivote
+    int i = p - 1; // Índice del elemento más pequeño
 
+    for (int j = p; j < r; j++) {
+        // Si el elemento actual es menor o igual al pivote
+        if (A[j] <= x) {
+            i++;
+            // Intercambia A[i] con A[j]
+            swap(A[i], A[j]);
+        }
+    }
+    // Intercambia A[i + 1] con A[r] para poner el pivote en su posición correcta
+    swap(A[i + 1], A[r]);
+    return i + 1; // Retorna el índice del pivote después de la partición
+}
+
+/**
+ * Ordena un subarreglo usando el algoritmo de QuickSort recursivamente.
+ * @param A: puntero al arreglo que se va a ordenar.
+ * @param p: índice inicial del subarreglo.
+ * @param r: índice final del subarreglo.
+ */
+void Ordenador::quicksortRecursive(int *A, int p, int r) {
+    if (p < r) {
+        int q = partition(A, p, r); // Particiona el subarreglo
+        quicksortRecursive(A, p, q - 1); // Ordena la mitad izquierda recursivamente
+        quicksortRecursive(A, q + 1, r); // Ordena la mitad derecha recursivamente
+    }
+}
+
+/**
+ * Ordena un arreglo de enteros utilizando el algoritmo de ordenamiento rapido.
+ * @param A: puntero al arreglo que se va a ordenar.
+ * @param n: tamano del arreglo
+ */
+void Ordenador::quicksort(int *A, int n){
+    quicksortRecursive(A, 0, n - 1);
+}
 
 // Método para imprimir información de la tarea
 string Ordenador::ImprimirDatosDeTarea(){

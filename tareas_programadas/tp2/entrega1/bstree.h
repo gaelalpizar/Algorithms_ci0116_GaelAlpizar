@@ -43,6 +43,54 @@ public:
      */
     ~bstnode() {
     };
+
+    /**
+     * @brief Obtiene la clave del nodo.
+     * @return Clave del nodo.
+     */
+    T getKey() const { return key; }
+
+    /**
+     * @brief Establece la clave del nodo.
+     * @param k Clave del nodo.
+     */
+    void setKey(const T& k) { key = k; }
+
+    /**
+     * @brief Obtiene el puntero al nodo padre.
+     * @return Puntero al nodo padre.
+     */
+    bstnode<T>* getParent() const { return p; }
+
+    /**
+     * @brief Establece el puntero al nodo padre.
+     * @param w Puntero al nodo padre.
+     */
+    void setParent(bstnode<T> *w) { p = w; }
+
+    /**
+     * @brief Obtiene el puntero al hijo izquierdo.
+     * @return Puntero al hijo izquierdo.
+     */
+    bstnode<T>* getLeft() const { return left; }
+
+    /**
+     * @brief Establece el puntero al hijo izquierdo.
+     * @param y Puntero al hijo izquierdo.
+     */
+    void setLeft(bstnode<T> *y) { left = y; }
+
+    /**
+     * @brief Obtiene el puntero al hijo derecho.
+     * @return Puntero al hijo derecho.
+     */
+    bstnode<T>* getRight() const { return right; }
+
+    /**
+     * @brief Establece el puntero al hijo derecho.
+     * @param z Puntero al hijo derecho.
+     */
+    void setRight(bstnode<T> *z) { right = z; }
 };
 
 /**
@@ -54,12 +102,15 @@ class bstree
 {
 private:
     bstnode<T> *root;    // raíz del árbol
+
+  
 public:
     // Esta clase es usada por otras clases. 
     // Modifique los atributos para que sean privados y se accedan solo mediante métodos públicos de la clase.
     
-
-    // Constructor (crea un árbol vacío)
+    /**
+     * @brief Constructor (crea un árbol vacío)
+     */
     bstree() : root(nullptr) { };
     
     ~bstree() {

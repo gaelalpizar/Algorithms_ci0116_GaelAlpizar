@@ -27,7 +27,6 @@ public:
     llnode() : next(nullptr) {
     };
     
-
     /**
      * @brief Inicialización de los datos miembro.
      * @param k Clave del nodo.
@@ -40,6 +39,30 @@ public:
      */
     ~llnode() {
     };
+
+     /**
+     * @brief Obtiene el valor de la llave.
+     * @return El valor de la llave.
+     */
+    T getKey() const { return key; }
+
+    /**
+     * @brief Obtiene el puntero al siguiente nodo.
+     * @return El puntero al siguiente nodo.
+     */
+    llnode<T>* getNext() const { return next; }
+
+    /**
+     * @brief Establece el valor de la llave.
+     * @param k Clave del nodo.
+     */
+    void setKey(const T& k) { key = k; }
+
+    /**
+     * @brief Establece el puntero al siguiente nodo.
+     * @param n Puntero al siguiente nodo.
+     */
+    void setNext(llnode<T>* n) { next = n; }
 };
 
 /**
@@ -65,8 +88,11 @@ public:
         nil->setNext(nil);  // El nodo centinela apunta a sí mismo
     };
     
+    /**
+     * @brief Destructor (borra la lista).
+     */
     ~llist() {
-        // Destructor (borra la lista)
+       
     };
     
     void Insert(llnode<T>* x) {

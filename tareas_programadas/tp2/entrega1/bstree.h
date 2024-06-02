@@ -207,9 +207,17 @@ public:
         }
         return x; // Retorna x, que puede ser nullptr si no se encontró la clave.
     };
-    
+
+    /**
+     * @brief Devuelve el nodo que tiene la llave menor. Si el árbol está vacío, devuelve nullptr.
+     * @param x Puntero a la raíz del subárbol.
+     * @return Puntero al nodo con la clave menor.
+     */
     bstnode<T>* Minimum(bstnode<T> *x) {
-        // Devuelve el nodo que tiene la llave menor. Si el árbol está vacío, devuelve nullptr.
+        while (x->getLeft() != nullptr) {
+            x = x->getLeft(); // Moverse continuamente al hijo izquierdo.
+        }
+        return x; // El nodo más a la izquierda es el mínimo.
     };
     
     bstnode<T>* Maximum(bstnode<T> *x) {

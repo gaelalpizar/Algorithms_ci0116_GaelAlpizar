@@ -92,7 +92,13 @@ public:
      * @brief Destructor (borra la lista).
      */
     ~llist() {
-       
+        llnode<T>* current = nil->getNext();
+        while (current != nil) {
+            llnode<T>* next = current->getNext();
+            delete current;  // Elimina el nodo actual
+            current = next;  // Avanza al siguiente nodo
+        }
+        delete nil;  // Elimina el nodo centinela
     };
     
     void Insert(llnode<T>* x) {

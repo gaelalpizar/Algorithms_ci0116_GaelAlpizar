@@ -132,8 +132,11 @@ public:
         destroyTree(root);
     };
     
+    /**
+     * @brief Inserta el nodo z en la posición que le corresponde en el árbol.
+     * @param z Puntero al nodo que se va a insertar.
+     */
     void Insert(bstnode<T>* z) {
-        // Inserta el nodo z en la posición que le corresponde en el árbol.
         bstnode<T> *y = nullptr; // y será el nodo padre del nodo z.
         bstnode<T> *x = root;    // Comenzamos desde la raíz.
 
@@ -145,6 +148,17 @@ public:
             } else {
                 x = x->getRight(); // Moverse al subárbol derecho.
             }
+        }
+
+        z->setParent(y); // Establece el nodo encontrado como padre de z.
+
+        // Si el árbol estaba vacío, z se convierte en la raíz.
+        if (y == nullptr) {
+            root = z;
+        } else if (z->getKey() < y->getKey()) {
+            y->setLeft(z); // z se convierte en el hijo izquierdo de y.
+        } else {
+            y->setRight(z); // z se convierte en el hijo derecho de y.
         }
     };
     

@@ -123,9 +123,21 @@ public:
         }
         return x;  // Devuelve el nodo encontrado o el nodo centinela
     };
-        
+
+    /**
+     * @brief Saca de la lista la llave contenida en el nodo apuntado por x.
+     * @param x Nodo a eliminar.
+     */  
     void Delete(llnode<T>* x) {
-        // Saca de la lista la llave contenida en el nodo apuntado por x.
+        llnode<T>* current = nil;
+        while (current->getNext() != nil && current->getNext() != x) {
+            current = current->getNext();  // Encuentra el nodo anterior a x
+        }
+        if (current->getNext() == x) {
+            current->setNext(x->getNext());  // Salta el nodo x
+            delete x;  // Elimina el nodo x
+        }
+
     };    
 };
 

@@ -111,8 +111,17 @@ public:
         nil->setNext(x);  // El centinela ahora apunta a x
     };
 
+    /**
+     * @brief Busca la llave iterativamente. Si la encuentra, devuelve un apuntador al nodo que la contiene; sino, devuelve el nodo nil (el centinela).
+     * @param k Clave a buscar.
+     * @return Puntero al nodo que contiene la clave o al nodo centinela si no se encuentra.
+     */
     llnode<T>* Search(const T& k) {
-        // Busca la llave iterativamente. Si la encuentra, devuelve un apuntador al nodo que la contiene; sino devuelve el nodo nil (el centinela).
+        llnode<T>* x = nil->getNext();  // Empieza desde el primer nodo
+        while (x != nil && x->getKey() != k) {
+            x = x->getNext();  // Avanza al siguiente nodo
+        }
+        return x;  // Devuelve el nodo encontrado o el nodo centinela
     };
         
     void Delete(llnode<T>* x) {

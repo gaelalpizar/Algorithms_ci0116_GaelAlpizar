@@ -6,6 +6,10 @@
 #define bstree_h
 
 #include <iostream>
+#include <string>
+#include <queue>
+
+using namespace std;
 
 /**
  * @brief Clase de un nodo en un árbol binario de búsqueda.
@@ -107,16 +111,37 @@ class bstree
 private:
     bstnode<T> *root;    // raíz del árbol
 
+   /**
+     * @brief Destruye el árbol y libera la memoria. (No recursivo usando queue)
+     * @param r Puntero a la raíz del subárbol a destruir.
+     */
+    void _destroyTree(bstnode<T>* r) {
+        if (r == nullptr)
+            return;
+
+        queue<bstnode<T>*> q;
+        q.push(r);
+
+        while (!q.empty()) {
+            bstnode<T>* current = q.front();
+            q.pop();
+
+            if (current->getLeft() != nullptr)
+                q.push(current->getLeft());
+            if (current->getRight() != nullptr)
+                q.push(current->getRight());
+
+            delete current;
+        }
+    }
+
     /**
      * @brief Destruye el árbol y libera la memoria.
      * @param node Puntero a la raíz del subárbol a destruir.
      */
     void destroyTree(bstnode<T>* node) {
-        if (node != nullptr) {
-            destroyTree(node->getLeft()); // Destruye el subárbol izquierdo.
-            destroyTree(node->getRight()); // Destruye el subárbol derecho.
-            delete node; 
-        }
+        _destroyTree(node);
+        root = nullptr; // Establece la raíz como nullptr después de eliminar el árbol.
     }
 
     /**
@@ -191,7 +216,7 @@ public:
     void InorderWalk(bstnode<T> *x) {
         if (x != nullptr) {
             InorderWalk(x->getLeft());          // Recorre el subárbol izquierdo.
-            std::cout << x->getKey() << std::endl; // Imprime la clave del nodo.
+            cout << x->getKey() << endl; // Imprime la clave del nodo.
             InorderWalk(x->getRight());         // Recorre el subárbol derecho.
         }
     };

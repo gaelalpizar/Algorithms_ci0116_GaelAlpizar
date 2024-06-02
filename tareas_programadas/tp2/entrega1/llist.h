@@ -5,6 +5,7 @@
 #ifndef llist_h
 #define llist_h
 
+#include <string>
 
 /**
  * @brief Nodos de la lista.
@@ -138,7 +139,12 @@ public:
             delete x;  // Elimina el nodo x
         }
 
-    };    
+    };   
+
+    // Método para imprimir información de la tarea
+    string ImprimirDatosDeTarea(){
+        return "c20270 Tarea 2 Etapa 1";
+    } 
 };
 
 #endif /* llist_h */

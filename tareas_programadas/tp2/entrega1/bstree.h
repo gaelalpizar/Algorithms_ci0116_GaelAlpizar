@@ -321,6 +321,11 @@ public:
 
     bstnode<T>* getRoot() { return root; }
     void setRoot(bstnode<T> *r) { root = r; }
+
+    // Método para imprimir información de la tarea
+    string ImprimirDatosDeTarea(){
+        return "c20270 Tarea 2 Etapa 1";
+    } 
 };
 
 #endif /* bstree_h */

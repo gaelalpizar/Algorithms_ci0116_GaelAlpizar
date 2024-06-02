@@ -220,8 +220,16 @@ public:
         return x; // El nodo más a la izquierda es el mínimo.
     };
     
+    /**
+     * @brief Devuelve el nodo que tiene la llave mayor. Si el árbol esta vacío devuelve nullptr.
+     * @param x Puntero a la raíz del subárbol.
+     * @return Puntero al nodo con la clave mayor.
+     */
     bstnode<T>* Maximum(bstnode<T> *x) {
-        // Devuelve el nodo que tiene la llave mayor. Si el árbol esta vacío devuelve nullptr.
+        while (x->getRight() != nullptr) {
+            x = x->getRight(); // Moverse continuamente al hijo derecho.
+        }
+        return x; // El nodo más a la derecha es el máximo.
     };
     
     bstnode<T>* Successor(bstnode<T> *x) {

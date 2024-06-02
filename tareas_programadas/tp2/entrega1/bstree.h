@@ -174,8 +174,21 @@ public:
         }
     };
     
+    /**
+     * @brief Busca la llave k recursivamente en el subárbol con raíz x. Si la encuentra devuelve un apuntador al nodo que la contiene, sino devuelve nullptr.
+     * @param x Puntero a la raíz del subárbol.
+     * @param k Clave que se busca.
+     * @return Puntero al nodo que contiene la clave o nullptr si no se encuentra.
+     */
     bstnode<T>* Search(bstnode<T> *x, const T& k) {
-        // Busca la llave k recursivamente en el subárbol con raíz x. Si la encuentra devuelve un apuntador al nodo que la contiene, sino devuelve nullptr.
+        if (x == nullptr || k == x->getKey()) {
+            return x; // Si x es nulo o la clave de x es k, retorna x.
+        }
+        if (k < x->getKey()) {
+            return Search(x->getLeft(), k); // Busca en el subárbol izquierdo.
+        } else {
+            return Search(x->getRight(), k); // Busca en el subárbol derecho.
+        }
     };
     
     bstnode<T>* IterativeSearch(bstnode<T> *x, const T& k) {

@@ -134,6 +134,18 @@ public:
     
     void Insert(bstnode<T>* z) {
         // Inserta el nodo z en la posición que le corresponde en el árbol.
+        bstnode<T> *y = nullptr; // y será el nodo padre del nodo z.
+        bstnode<T> *x = root;    // Comenzamos desde la raíz.
+
+        // Recorre el árbol para encontrar la posición correcta para z.
+        while (x != nullptr) {
+            y = x; // y sigue el rastro de x.
+            if (z->getKey() < x->getKey()) {
+                x = x->getLeft(); // Moverse al subárbol izquierdo.
+            } else {
+                x = x->getRight(); // Moverse al subárbol derecho.
+            }
+        }
     };
     
     void InorderWalk(bstnode<T> *x) {

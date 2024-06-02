@@ -101,8 +101,14 @@ public:
         delete nil;  // Elimina el nodo centinela
     };
     
+
+    /**
+     * @brief Inserta el nodo x en la lista.
+     * @param x Nodo a insertar.
+     */
     void Insert(llnode<T>* x) {
-        // Inserta el nodo x en la lista.
+        x->setNext(nil->getNext());  // El siguiente de x es el primero de la lista actual
+        nil->setNext(x);  // El centinela ahora apunta a x
     };
 
     llnode<T>* Search(const T& k) {

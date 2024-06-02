@@ -26,7 +26,11 @@ public:
     /**
      * @brief Constructor por omisión que inicializa un nodo vacío.
      */
-    bstnode(): key(0), p(nullptr), left(nullptr), right(nullptr) {
+    bstnode() {
+        this->left = nullptr;
+        this->right = nullptr;
+        this->p =nullptr;
+        this->key = 0;
     };
     
     /**
@@ -289,6 +293,9 @@ public:
             y->getLeft()->setParent(y);
         }
     };  
+
+    bstnode<T>* getRoot() { return root; }
+    void setRoot(bstnode<T> *r) { root = r; }
 };
 
 #endif /* bstree_h */

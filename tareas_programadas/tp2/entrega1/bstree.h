@@ -232,8 +232,22 @@ public:
         return x; // El nodo más a la derecha es el máximo.
     };
     
+    /**
+     * @brief Devuelve el nodo cuya llave es la que le sigue a la del nodo x. Si no existe el nodo, devuelve nullptr.
+     * @param x Puntero al nodo del que se quiere encontrar el sucesor.
+     * @return Puntero al nodo sucesor o nullptr si no existe.
+     */
     bstnode<T>* Successor(bstnode<T> *x) {
-        // Devuelve el nodo cuya llave es la que le sigue a la del nodo x. Si no existe el nodo, devuelve nullptr.
+        if (x->getRight() != nullptr) {
+            return Minimum(x->getRight()); // El sucesor es el mínimo del subárbol derecho.
+        }
+
+        bstnode<T> *y = x->getParent();
+        while (y != nullptr && x == y->getRight()) {
+            x = y; // Moverse hacia arriba en el árbol.
+            y = y->getParent();
+        }
+        return y; // El sucesor es el primer ancestro hacia arriba.
     };
     
     void Delete(bstnode<T>* z) {

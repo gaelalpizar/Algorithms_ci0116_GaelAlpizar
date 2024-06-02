@@ -161,9 +161,17 @@ public:
             y->setRight(z); // z se convierte en el hijo derecho de y.
         }
     };
-    
+
+    /**
+     * @brief Recorre en orden el subárbol con raíz x, imprimiendo la llave de cada nodo en en una nueva línea de la salida estándar después de recorrido el subárbol izquierdo y antes de recorrer el subárbol derecho.
+     * @param x Puntero a la raíz del subárbol.
+     */
     void InorderWalk(bstnode<T> *x) {
-        // Recorre en orden el subárbol con raíz x, imprimiendo la llave de cada nodo en en una nueva línea de la salida estándar después de recorrido el subárbol izquierdo y antes de recorrer el subárbol derecho.
+        if (x != nullptr) {
+            InorderWalk(x->getLeft());          // Recorre el subárbol izquierdo.
+            std::cout << x->getKey() << std::endl; // Imprime la clave del nodo.
+            InorderWalk(x->getRight());         // Recorre el subárbol derecho.
+        }
     };
     
     bstnode<T>* Search(bstnode<T> *x, const T& k) {

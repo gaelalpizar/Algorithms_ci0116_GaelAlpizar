@@ -103,6 +103,17 @@ class bstree
 private:
     bstnode<T> *root;    // raíz del árbol
 
+    /**
+     * @brief Destruye el árbol y libera la memoria.
+     * @param node Puntero a la raíz del subárbol a destruir.
+     */
+    void destroyTree(bstnode<T>* node) {
+        if (node != nullptr) {
+            destroyTree(node->getLeft()); // Destruye el subárbol izquierdo.
+            destroyTree(node->getRight()); // Destruye el subárbol derecho.
+            delete node; 
+        }
+    }
   
 public:
     // Esta clase es usada por otras clases. 
@@ -113,8 +124,12 @@ public:
      */
     bstree() : root(nullptr) { };
     
+    /**
+     * @brief Destructor (borra el árbol)
+     */
     ~bstree() {
-        // Destructor (borra el árbol)
+        // Llama a destroyTree para liberar toda la memoria usada por los nodos del árbol.
+        destroyTree(root);
     };
     
     void Insert(bstnode<T>* z) {

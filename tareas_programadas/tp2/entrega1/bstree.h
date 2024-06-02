@@ -114,6 +114,24 @@ private:
             delete node; 
         }
     }
+
+    /**
+     * @brief Reemplaza el subárbol enraizado en u por el subárbol enraizado en v.
+     * @param u Puntero al nodo a ser reemplazado.
+     * @param v Puntero al nodo que reemplaza a u.
+     */
+    void Transplant(bstnode<T> *u, bstnode<T> *v) {
+        if (u->getParent() == nullptr) {
+            root = v; // v se convierte en la nueva raíz.
+        } else if (u == u->getParent()->getLeft()) {
+            u->getParent()->setLeft(v); // v reemplaza a u como hijo izquierdo.
+        } else {
+            u->getParent()->setRight(v); // v reemplaza a u como hijo derecho.
+        }
+        if (v != nullptr) {
+            v->setParent(u->getParent()); // Actualiza el padre de v.
+        }
+    }
   
 public:
     // Esta clase es usada por otras clases. 
@@ -250,8 +268,26 @@ public:
         return y; // El sucesor es el primer ancestro hacia arriba.
     };
     
+    /**
+     * @brief Saca del árbol la clave contenida en el nodo apuntado por z.
+     * @param z Puntero al nodo que se va a eliminar.
+     */
     void Delete(bstnode<T>* z) {
-        // Saca del árbol la llave contenida en el nodo apuntado por z.
+        if (z->getLeft() == nullptr) {
+            Transplant(z, z->getRight()); // Reemplaza z por su hijo derecho.
+        } else if (z->getRight() == nullptr) {
+            Transplant(z, z->getLeft()); // Reemplaza z por su hijo izquierdo.
+        } else {
+            bstnode<T> *y = Minimum(z->getRight()); // Encuentra el sucesor de z.
+            if (y != z->getRight()) {
+                Transplant(y, y->getRight());
+                y->setRight(z->getRight());
+                y->getRight()->setParent(y);
+            }
+            Transplant(z, y);
+            y->setLeft(z->getLeft());
+            y->getLeft()->setParent(y);
+        }
     };  
 };
 

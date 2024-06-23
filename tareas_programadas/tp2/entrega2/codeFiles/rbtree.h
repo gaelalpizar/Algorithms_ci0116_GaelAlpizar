@@ -309,8 +309,22 @@ public:
         }
     };
     
+    /**
+     * @brief Busca la clave k recursivamente en el subárbol con raíz x. Si la encuentra devuelve un apuntador al nodo que la contiene, sino devuelve el nodo nil.
+     * 
+     * @param x Puntero a la raíz del subárbol
+     * @param k Clave que se busca
+     * @return Puntero al nodo que contiene la clave o nil si no se encuentra
+     */
     rbtnode<T>* Search(rbtnode<T> *x, const T& k) {
-        // Busca la llave k iterativamente en el subarbol con raíz x. Si la encuentra devuelve un apuntador al nodo que la contiene, sino devuelve el nodo nil.
+        if (x == nil || k == x->key) {
+            return x;
+        }
+        if (k < x->key) {
+            return Search(x->left, k);
+        } else {
+            return Search(x->right, k);
+        }
     };
     
     rbtnode<T>* IterativeSearch(rbtnode<T> *x, const T& k) {

@@ -52,6 +52,21 @@ public:
 // Arbol rojinegro:
 template <typename T>
 class rbtree {
+private:
+
+    /**
+     * @brief Borra todos los nodos del árbol
+     * 
+     * @param x Raíz del subárbol a borrar
+     */
+    void clear(rbtnode<T>* x) {
+        if (x != nil) {
+            clear(x->left);
+            clear(x->right);
+            delete x;
+        }
+    }
+
 public:
     rbtnode<T> *root;    // raíz del árbol
     rbtnode<T> *nil;     // nodo nil (hoja) del árbol
@@ -73,8 +88,12 @@ public:
        
     };
     
+    /**
+     * @brief Destructor (borra el árbol).
+     */
     ~rbtree() {
-        // Destructor (borra el árbol)
+        clear(root);
+        delete nil;
     };
     
     void Insert(rbtnode<T>* z) {

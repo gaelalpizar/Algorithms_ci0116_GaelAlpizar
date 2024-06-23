@@ -78,6 +78,30 @@ private:
     }
 
     /**
+     * @brief Realiza una rotación a la derecha sobre el nodo x.
+     * 
+     * @param x Nodo sobre el cual se realiza la rotación
+     */
+    void RightRotate(rbtnode<T>* x) {
+        rbtnode<T>* y = x->left;
+        x->left = y->right;
+        if (y->right != nil) {
+            y->right->p = x;
+        }
+        y->p = x->p;
+        if (x->p == nil) {
+            root = y;
+        } else if (x == x->p->right) {
+            x->p->right = y;
+        } else {
+            x->p->left = y;
+        }
+        y->right = x;
+        x->p = y;
+    }
+
+
+    /**
      * @brief Borra todos los nodos del árbol
      * 
      * @param x Raíz del subárbol a borrar

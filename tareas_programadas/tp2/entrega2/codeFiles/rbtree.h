@@ -8,6 +8,8 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 enum colors {RED, BLACK};
 
 // Nodos del árbol:
@@ -294,8 +296,17 @@ public:
         InsertFixup(z);
     };
     
+    /**
+     * @brief Recorre en orden el subarbol con raíz x, imprimiendo la llave de cada nodo en en una nueva linea de la salida estandar despues de recorrido el subarbol izquierdo y antes de recorrer el subarbol derecho.
+     * 
+     * @param x Puntero a la raíz del subárbol
+     */
     void InorderWalk(rbtnode<T> *x) {
-        // Recorre en orden el subarbol con raíz x, imprimiendo la llave de cada nodo en en una nueva linea de la salida estandar despues de recorrido el subarbol izquierdo y antes de recorrer el subarbol derecho.
+       if (x != nil) {
+            InorderWalk(x->left);
+            cout << x->key << endl;
+            InorderWalk(x->right);
+        }
     };
     
     rbtnode<T>* Search(rbtnode<T> *x, const T& k) {

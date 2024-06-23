@@ -100,6 +100,50 @@ private:
         x->p = y;
     }
 
+    /**
+     * @brief Corrige las violaciones de las propiedades del árbol rojo-negro después de una inserción.
+     * 
+     * @param z Nodo insertado
+     */
+    void InsertFixup(rbtnode<T>* z) {
+        while (z->p->color == RED) {
+            if (z->p == z->p->p->left) {
+                rbtnode<T>* y = z->p->p->right;
+                if (y->color == RED) {
+                    z->p->color = BLACK;
+                    y->color = BLACK;
+                    z->p->p->color = RED;
+                    z = z->p->p;
+                } else {
+                    if (z == z->p->right) {
+                        z = z->p;
+                        LeftRotate(z);
+                    }
+                    z->p->color = BLACK;
+                    z->p->p->color = RED;
+                    RightRotate(z->p->p);
+                }
+            } else {
+                rbtnode<T>* y = z->p->p->left;
+                if (y->color == RED) {
+                    z->p->color = BLACK;
+                    y->color = BLACK;
+                    z->p->p->color = RED;
+                    z = z->p->p;
+                } else {
+                    if (z == z->p->left) {
+                        z = z->p;
+                        RightRotate(z);
+                    }
+                    z->p->color = BLACK;
+                    z->p->p->color = RED;
+                    LeftRotate(z->p->p);
+                }
+            }
+        }
+        root->color = BLACK;
+    }
+
 
     /**
      * @brief Borra todos los nodos del árbol

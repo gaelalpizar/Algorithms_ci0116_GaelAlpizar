@@ -144,6 +144,23 @@ private:
         root->color = BLACK;
     }
 
+    /**
+     * @brief Reemplaza el subárbol u con el subárbol v.
+     * 
+     * @param u Subárbol a ser reemplazado
+     * @param v Subárbol que reemplaza a u
+     */
+    void Transplant(rbtnode<T>* u, rbtnode<T>* v) {
+        if (u->p == nil) {
+            root = v;
+        } else if (u == u->p->left) {
+            u->p->left = v;
+        } else {
+            u->p->right = v;
+        }
+        v->p = u->p;
+    }
+
 
     /**
      * @brief Borra todos los nodos del árbol

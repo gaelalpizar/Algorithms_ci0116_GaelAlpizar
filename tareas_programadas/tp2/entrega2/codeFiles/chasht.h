@@ -13,8 +13,15 @@ template <typename T>
 // Tabla de dispersión con encadenamiento
 class chtable {
 public:
-    // Constructor que especifica el tamaño de la tabla
-    chtable(int sz) {};
+
+    /**
+     * @brief Constructor que especifica el tamaño de la tabla
+     * @param sz Tamaño de la tabla
+     */
+    chtable(int sz) {
+        size = sz;
+        table.resize(size);
+    };
         
     // Destructor (borra la tabla)
     ~chtable() {

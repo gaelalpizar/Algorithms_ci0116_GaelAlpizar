@@ -144,6 +144,66 @@ private:
         root->color = BLACK;
     }
 
+        /**
+     * @brief Corrige las violaciones de las propiedades del árbol rojo-negro después de una eliminación.
+     * 
+     * @param x Nodo que se va a corregir
+     */
+    void DeleteFixup(rbtnode<T>* x) {
+        while (x != root && x->color == BLACK) {
+            if (x == x->p->left) {
+                rbtnode<T>* w = x->p->right;
+                if (w->color == RED) {
+                    w->color = BLACK;
+                    x->p->color = RED;
+                    LeftRotate(x->p);
+                    w = x->p->right;
+                }
+                if (w->left->color == BLACK && w->right->color == BLACK) {
+                    w->color = RED;
+                    x = x->p;
+                } else {
+                    if (w->right->color == BLACK) {
+                        w->left->color = BLACK;
+                        w->color = RED;
+                        RightRotate(w);
+                        w = x->p->right;
+                    }
+                    w->color = x->p->color;
+                    x->p->color = BLACK;
+                    w->right->color = BLACK;
+                    LeftRotate(x->p);
+                    x = root;
+                }
+            } else {
+                rbtnode<T>* w = x->p->left;
+                if (w->color == RED) {
+                    w->color = BLACK;
+                    x->p->color = RED;
+                    RightRotate(x->p);
+                    w = x->p->left;
+                }
+                if (w->right->color == BLACK && w->left->color == BLACK) {
+                    w->color = RED;
+                    x = x->p;
+                } else {
+                    if (w->left->color == BLACK) {
+                        w->right->color = BLACK;
+                        w->color = RED;
+                        LeftRotate(w);
+                        w = x->p->left;
+                    }
+                    w->color = x->p->color;
+                    x->p->color = BLACK;
+                    w->left->color = BLACK;
+                    RightRotate(x->p);
+                    x = root;
+                }
+            }
+        }
+        x->color = BLACK;
+    }
+
     /**
      * @brief Reemplaza el subárbol u con el subárbol v.
      * 

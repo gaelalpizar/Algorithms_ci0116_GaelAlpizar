@@ -34,7 +34,9 @@ public:
      * @param k Elemento a insertar.
      */
     void Insert(const T& k) {
-        
+        int index = hashFunction(k);
+        llnode<T>* newNode = new llnode<T>(k);
+        table[index].Insert(newNode);
     };
     
     // Retorna un puntero a la llave o nullptr si no se encuentra

@@ -346,8 +346,17 @@ public:
         
     };
     
+     /**
+     * @brief Devuelve el nodo que tiene la clave menor en el subárbol con raíz x. Si el árbol esta vacío, devuelve el nodo nil.
+     * 
+     * @param x Puntero a la raíz del subárbol
+     * @return Puntero al nodo con la clave menor o nil si el árbol está vacío
+     */
     rbtnode<T>* Minimum(rbtnode<T> *x) {
-        // Devuelve el nodo que tiene la llave menor. Si el árbol esta vacío, devuelve el nodo nil.
+        while (x->left != nil) {
+            x = x->left;
+        }
+        return x;
     };
     
     rbtnode<T>* Maximum(rbtnode<T> *x) {

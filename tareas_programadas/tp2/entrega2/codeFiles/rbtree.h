@@ -389,6 +389,42 @@ public:
         }
         return y;
     };
+
+     /**
+     * @brief Elimina el nodo z del árbol.
+     * 
+     * @param z Puntero al nodo que se va a eliminar
+     */
+    void Delete(rbtnode<T>* z) {
+        rbtnode<T>* y = z;
+        rbtnode<T>* x;
+        enum colors y_original_color = y->color;
+        if (z->left == nil) {
+            x = z->right;
+            Transplant(z, z->right);
+        } else if (z->right == nil) {
+            x = z->left;
+            Transplant(z, z->left);
+        } else {
+            y = Minimum(z->right);
+            y_original_color = y->color;
+            x = y->right;
+            if (y->p == z) {
+                x->p = y;
+            } else {
+                Transplant(y, y->right);
+                y->right = z->right;
+                y->right->p = y;
+            }
+            Transplant(z, y);
+            y->left = z->left;
+            y->left->p = y;
+            y->color = z->color;
+        }
+        if (y_original_color == BLACK) {
+            DeleteFixup(x);
+        }
+    }
 };
 
 #endif /* rbtree_h */

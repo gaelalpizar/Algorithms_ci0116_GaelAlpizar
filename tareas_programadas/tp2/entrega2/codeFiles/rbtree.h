@@ -54,6 +54,29 @@ template <typename T>
 class rbtree {
 private:
 
+     /**
+     * @brief Realiza una rotación a la izquierda sobre el nodo x.
+     * 
+     * @param x Nodo sobre el cual se realiza la rotación
+     */
+    void LeftRotate(rbtnode<T>* x) {
+        rbtnode<T>* y = x->right;
+        x->right = y->left;
+        if (y->left != nil) {
+            y->left->p = x;
+        }
+        y->p = x->p;
+        if (x->p == nil) {
+            root = y;
+        } else if (x == x->p->left) {
+            x->p->left = y;
+        } else {
+            x->p->right = y;
+        }
+        y->left = x;
+        x->p = y;
+    }
+
     /**
      * @brief Borra todos los nodos del árbol
      * 
@@ -96,6 +119,11 @@ public:
         delete nil;
     };
     
+    /**
+     * @brief Inserta el nodo z en la posición que le corresponde en el árbol.
+     * 
+     * @param z Puntero al nodo que se va a insertar
+     */
     void Insert(rbtnode<T>* z) {
         // Inserta el nodo z en la posición que le corresponde en el árbol.
     };

@@ -310,7 +310,7 @@ public:
     };
     
     /**
-     * @brief Busca la clave k recursivamente en el subárbol con raíz x. Si la encuentra devuelve un apuntador al nodo que la contiene, sino devuelve el nodo nil.
+     * @brief Busca la clave k recursivamente en el subárbol con raíz x. 
      * 
      * @param x Puntero a la raíz del subárbol
      * @param k Clave que se busca
@@ -328,7 +328,7 @@ public:
     };
     
     /**
-     * @brief Busca la clave k iterativamente en el subárbol con raíz x.  Si la encuentra devuelve un apuntador al nodo que la contiene, sino devuelve el nodo nil.
+     * @brief Busca la clave k iterativamente en el subárbol con raíz x. 
      * 
      * @param x Puntero a la raíz del subárbol
      * @param k Clave que se busca
@@ -347,7 +347,7 @@ public:
     };
     
     /**
-     * @brief Devuelve el nodo que tiene la clave menor en el subárbol con raíz x. Si el árbol esta vacío, devuelve el nodo nil.
+     * @brief Devuelve el nodo que tiene la clave menor en el subárbol con raíz x. 
      * 
      * @param x Puntero a la raíz del subárbol
      * @return Puntero al nodo con la clave menor o nil si el árbol está vacío
@@ -360,7 +360,7 @@ public:
     };
     
     /**
-     * @brief Devuelve el nodo que tiene la clave mayor en el subárbol con raíz x. Si el árbol esta vacío devuelve el nodo nil.
+     * @brief Devuelve el nodo que tiene la clave mayor en el subárbol con raíz x. 
      * 
      * @param x Puntero a la raíz del subárbol
      * @return Puntero al nodo con la clave mayor o nil si el árbol está vacío
@@ -372,8 +372,22 @@ public:
         return x;
     };
     
+    /**
+     * @brief Devuelve el nodo cuya clave es la que le sigue a la del nodo x.
+     * 
+     * @param x Puntero al nodo del cual se desea encontrar el sucesor
+     * @return Puntero al nodo sucesor o nil si no existe
+     */
     rbtnode<T>* Successor(rbtnode<T> *x) {
-        // Devuelve el nodo cuya llave es la que le sigue a la del nodo x. Si no existe el nodo, devuelve el nodo nil.
+        if (x->right != nil) {
+            return Minimum(x->right);
+        }
+        rbtnode<T>* y = x->p;
+        while (y != nil && x == y->right) {
+            x = y;
+            y = y->p;
+        }
+        return y;
     };
 };
 

@@ -270,7 +270,28 @@ public:
      * @param z Puntero al nodo que se va a insertar
      */
     void Insert(rbtnode<T>* z) {
-        // Inserta el nodo z en la posición que le corresponde en el árbol.
+        rbtnode<T>* y = nil;
+        rbtnode<T>* x = root;
+        while (x != nil) {
+            y = x;
+            if (z->key < x->key) {
+                x = x->left;
+            } else {
+                x = x->right;
+            }
+        }
+        z->p = y;
+        if (y == nil) {
+            root = z;
+        } else if (z->key < y->key) {
+            y->left = z;
+        } else {
+            y->right = z;
+        }
+        z->left = nil;
+        z->right = nil;
+        z->color = RED;
+        InsertFixup(z);
     };
     
     void InorderWalk(rbtnode<T> *x) {

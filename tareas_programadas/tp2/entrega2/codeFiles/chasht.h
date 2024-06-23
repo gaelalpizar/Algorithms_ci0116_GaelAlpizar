@@ -5,7 +5,7 @@
 #ifndef chtable_h
 #define chtable_h
 
-#include <list>
+#include "dllist.h"
 #include <vector>
 
 template <typename T>
@@ -23,12 +23,18 @@ public:
         table.resize(size);
     };
         
-    // Destructor (borra la tabla)
+    /**
+     * @brief Destructor (borra la tabla)
+     */
     ~chtable() {
     };
     
-    // Inserta el elemento en la tabla
+    /**
+     * @brief Inserta el elemento en la tabla
+     * @param k Elemento a insertar.
+     */
     void Insert(const T& k) {
+        
     };
     
     // Retorna un puntero a la llave o nullptr si no se encuentra
@@ -42,6 +48,17 @@ private:
     
     // La tabla es un vector de listas de STL
     std::vector<std::list<T> > table;
+
+    /**
+     * @brief Función de dispersión
+     * @param k Clave a dispersar.
+     * @return Índice de la tabla.
+     */
+    int hash(const T& k) const {
+        return k % size;
+    }
+
+
 };
 
 #endif /* chtable_h */

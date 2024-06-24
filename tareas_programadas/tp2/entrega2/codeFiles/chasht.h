@@ -53,6 +53,18 @@ public:
             return &(node->getKey());
         }
     };
+
+    /**
+     * @brief Elimina el elemento de la tabla.
+     * @param k Elemento a eliminar.
+     */
+    void Delete(const T& k) {
+        int index = hash(k);
+        llnode<T>* node = table[index].Search(k);
+        if (node != table[index].nil) {
+            table[index].Delete(node);
+        }
+    }
     
     
 private:

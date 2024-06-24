@@ -425,6 +425,14 @@ public:
             DeleteFixup(x);
         }
     }
+
+    /**
+     * @brief Método para imprimir información de la tarea.
+     * @return Cadena con información de la tarea.
+     */
+    std::string ImprimirDatosDeTarea() {
+        return "c20270 Tarea 2 Etapa 2";
+    }
 };
 
 #endif /* rbtree_h */

@@ -50,7 +50,7 @@ public:
         if (node == nullptr) {
             return nullptr;
         } else {
-            return &(node->getKey());
+            return &(node->getKeyReference());
         }
     };
 

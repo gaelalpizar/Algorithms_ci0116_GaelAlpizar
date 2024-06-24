@@ -39,8 +39,19 @@ public:
         table[index].Insert(newNode);
     };
     
-    // Retorna un puntero a la llave o nullptr si no se encuentra
+    /**
+     * @brief Retorna un puntero a la llave o nullptr si no se encuentra.
+     * @param k Elemento a buscar.
+     * @return Puntero al elemento o nullptr si no se encuentra.
+     */
     T* Search(const T& k) {
+        int index = hash(k);
+        llnode<T>* node = table[index].Search(k);
+        if (node == table[index].nil) {
+            return nullptr;
+        } else {
+            return &(node->getKey());
+        }
     };
     
     
@@ -49,7 +60,7 @@ private:
     int size;
     
     // La tabla es un vector de listas de STL
-    std::vector<std::list<T> > table;
+    std::vector<dllist<T> > table;
 
     /**
      * @brief Función de dispersión

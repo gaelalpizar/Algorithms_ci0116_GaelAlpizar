@@ -61,7 +61,7 @@ public:
     void Delete(const T& k) {
         int index = hash(k);
         llnode<T>* node = table[index].Search(k);
-        if (node != table[index].nil) {
+        if (node != nullptr) {
             table[index].Delete(node);
         }
     }

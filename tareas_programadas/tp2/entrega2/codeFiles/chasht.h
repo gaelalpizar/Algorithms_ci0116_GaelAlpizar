@@ -34,7 +34,7 @@ public:
      * @param k Elemento a insertar.
      */
     void Insert(const T& k) {
-        int index = hashFunction(k);
+        int index = hash(k);
         llnode<T>* newNode = new llnode<T>(k);
         table[index].Insert(newNode);
     };
@@ -47,7 +47,7 @@ public:
     T* Search(const T& k) {
         int index = hash(k);
         llnode<T>* node = table[index].Search(k);
-        if (node == table[index].nil) {
+        if (node == nullptr) {
             return nullptr;
         } else {
             return &(node->getKey());

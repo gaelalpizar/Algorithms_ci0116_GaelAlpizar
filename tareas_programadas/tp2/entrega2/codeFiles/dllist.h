@@ -41,6 +41,8 @@ public:
      */
     T getKey() const { return key; }
 
+    T& getKeyReference() { return key; }
+
     /**
      * @brief Obtiene el puntero al siguiente nodo.
      * @return El puntero al siguiente nodo.
@@ -104,6 +106,10 @@ public:
         }
         delete nil;
     }
+
+    llnode<T>* getSentinel(){ return this->nil; }
+     
+    
 
     /**
      * @brief Inserta el nodo x en la lista.
